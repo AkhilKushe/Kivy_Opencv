@@ -1,4 +1,9 @@
-from kivymd.app import MDApp
+#Simple program to show how to integrate webcam into kivy textures
+#You can set the video sourse as any external device by changing the parameters of VideoCapture
+#function.
+
+
+from kivy.app import App
 from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.graphics.texture import Texture
@@ -32,9 +37,6 @@ BoxLayout:
         size_hint: 0.5,0.5
         pos_hint: {"x":0.1,"top":1}
         
-    MDRectangleFlatButton:
-        text: "Nothing"
-        on_press: app.button()
 '''
 
 class KivyCamera(Image):
@@ -55,13 +57,11 @@ class KivyCamera(Image):
 
             self.texture = image_texture
 
-class CamApp(MDApp):
+class CamApp(App):
     def build(self):
         self.capture = cv2.VideoCapture(0)
         return Builder.load_string(kv)
     
-    def button(self):
-        print(self.root.ids)
     
     def on_stop(self):
         self.capture.release()

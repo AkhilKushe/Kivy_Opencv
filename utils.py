@@ -1,3 +1,8 @@
+#All the cv2 functions are present here these functions can be integrated
+#with the programs for different applications.
+#This can be also used for generating the frames to test the show_frames program
+
+
 import cv2
 import concurrent.futures
 from io import BytesIO
@@ -30,7 +35,7 @@ def show_image(img_path):
     final_img = cv2.imdecode(np_img, 0)
     print(final_img)
     final_img = cv2.flip(final_img, 0)
-    final_img = cv2.resize(final_img,(680,420), interpolation=cv2.INTER_AREA)
+    final_img = cv2.resize(final_img,(640,480), interpolation=cv2.INTER_AREA)
     cv2.imshow("img", final_img)
     cv2.waitKey(0)
 
@@ -45,7 +50,18 @@ def save_frames(folder_name, num_frames):
         cv2.imwrite(file_name, frame, )
         time.sleep(0.001)
 
-
+#save frames from a video as grayscale
+def save_video_frames(file_name, folder_name, num_frames):
+    vid = cv2.VideoCapture(file_name)
+    for i in range(num_frames):
+        ret, frame = vid.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        frame = cv2.resize(frame, (640, 480), interpolation=cv2.INTER_LANCZOS4)
+        f_name = f"{folder_name}/img_{i}.png"
+        cv2.imwrite(f_name, frame)
+        time.sleep(0.001)		
+		
+		
 #show frames stored in a folder
 def show_frames(folder_name, num_frames):
     for i in range(num_frames):
@@ -57,10 +73,10 @@ def show_frames(folder_name, num_frames):
 #save video from frames(images) as grayscale only
 def save_video(folder_name, num_frames, file_name, fps):
     fourcc = cv2.VideoWriter_fourcc(*"XVID")
-    writer = cv2.VideoWriter(file_name, fourcc, fps, (680,420)) #res same as shape of mat
+    writer = cv2.VideoWriter(file_name, fourcc, fps, (640,480)) #res same as shape of mat
     for i in range(num_frames):
         img = cv2.imread(f"{folder_name}/img_{i}.png", 1)  #needs to be a three channel mat
-        img = cv2.resize(img,(680, 420), interpolation=cv2.INTER_AREA)
+        img = cv2.resize(img,(640, 480), interpolation=cv2.INTER_AREA)
         
         #force grayscale
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -96,17 +112,22 @@ def live_record(file_name, fps):
         else:
             break
 
-def get_frame(fold_name, frames):
-    for i in range(frames):
-        img = cv2.imread(f"Kivy and OpenCv/{fold_name}/img_{i}.png", 1)
-        
-        #force grayscale
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        img[:,:,0] = gray
-        img[:,:,1] = gray
-        img[:,:,2] = gray
+def get_frame(fold_name):
+    path = f"{os.path.dirname(__file__)}/{fold_name}"
+    size = len([i.path for i in os.scandir(path)]) - 1
+    for i in range(size):
+        try:
+            img = cv2.imread(f"{path}/img_{i}.png", 1)
+            
+            #force grayscale
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img[:,:,0] = gray
+            img[:,:,1] = gray
+            img[:,:,2] = gray
 
-        yield (True, img)
+            yield (True, img)
+        except:
+            yield (False, None)
 
 
 

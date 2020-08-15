@@ -1,4 +1,8 @@
-from kivymd.app import MDApp
+#adding multiple textures into the app
+#The video source for each texture can be different allowing multiple display 
+#objects on the screen
+
+from kivy.app import App
 from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.graphics.texture import Texture
@@ -30,38 +34,37 @@ BoxLayout:
     
     GridLayout:
         cols:3
-        size_hint:1,None
 
-        MDRectangleFlatButton:
+        Button:
             text: "Cam 1 start"
             size_hint: 0.1,None
             on_press: root.ids.cam1.start()
 
     
-        MDRectangleFlatButton:
+        Button:
             text: "Cam 2 start"
             size_hint: 0.1,None
             on_press: root.ids.cam2.start()
 
     
-        MDRectangleFlatButton:
+        Button:
             text: "Cam 3 start"
             size_hint: 0.1,None
             on_press: root.ids.cam3.start()
 
     
-        MDRectangleFlatButton:
+        Button:
             text: "Cam 1 stop"
             size_hint: 0.1,None
             on_press: root.ids.cam1.stop()
 
     
-        MDRectangleFlatButton:
+        Button:
             text: "Cam 2 stop"
             size_hint: 0.1,None
             on_press: root.ids.cam2.stop()
     
-        MDRectangleFlatButton:
+        Button:
             text: "Cam 3 stop"
             size_hint: 0.1,None
             on_press: root.ids.cam3.stop()
@@ -92,7 +95,7 @@ class KivyCamera(Image):
 
             self.texture = image_texture
 
-class CamApp(MDApp):
+class CamApp(App):
     def build(self):
         self.capture = cv2.VideoCapture(0)
         return Builder.load_string(kv)

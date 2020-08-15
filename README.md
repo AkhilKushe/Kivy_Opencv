@@ -1,3 +1,3 @@
-# Kivy_Opencv
-This is a sample repo 
-It contains code for integrating KivyMd with OpenCv for camera app
+# **Kivy_Opencv**
+### This branch supports Vanilla Kivy Instead of Kivymd
+See the master README.md for futher instructions.
