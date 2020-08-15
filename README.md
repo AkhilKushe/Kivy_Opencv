@@ -3,11 +3,11 @@
 
 ### Description
 * This is my first github repository so I am uploading this just as a demo.
-* These are collection of some python files that demonstrates woring of Kivy with OpenCv.
+* This is a collection of some python files that demonstrates the working of Kivy with OpenCv.
 * Common usage would be:
     - Camara app
     - Surveillance monitor
-    - As code temlate
+    - As code template
 * The utils.py provides basic video capture and manipulation function made with OpenCv.
 * All the code is free to use. 
 
