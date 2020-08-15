@@ -8,7 +8,7 @@
     - Camara app
     - Surveillance monitor
     - As code temlate
-* The utils.py provides basic video capture and manipulation function made OpenCv.
+* The utils.py provides basic video capture and manipulation function made with OpenCv.
 * All the code is free to use. 
 
 ### Installing python modules and dependancies
