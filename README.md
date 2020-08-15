@@ -1,5 +1,5 @@
 # **Kivymd_Opencv**
-### To get support for Vanilla Kivy check the kivy_compatibility branch
+### To get support for Vanilla Kivy check the kivy_compatible branch
 
 ### Description
 * This is my first github repository so I am uploading this just as a demo.
