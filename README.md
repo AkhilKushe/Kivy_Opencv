@@ -15,6 +15,6 @@
 * See the requirements.txt for the dependancies
 * Or simply run the following command in terminal to install all the dependancies:
 
-'''
+```
 $ python -m pip install -r requirements.txt
-'''
+```
