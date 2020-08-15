@@ -1,12 +1,17 @@
+#This program demonstrates how to get display video from image frames
+# stored on your device. This can be integrated with a remote video source
+# which sents frames to the sever, to act as a surveilance monitor.
+
+
 from kivymd.app import MDApp
 from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 from kivy.lang.builder import Builder
 import cv2
-from intro_cv import *
+import utils
 
-
+fold = "sample"     #name of the folder with image frames(should be in the current dir)
 
 
 kv ='''
@@ -66,15 +71,14 @@ BoxLayout:
         MDRectangleFlatButton:
             text: "Cam 3 stop"
             size_hint: 0.1,None
-            on_press: app.button()
+            on_press: root.ids.cam3.stop()
 '''
 
 class KivyCamera(Image):
-    def __init__(self, capture = None, fps=30, **kwargs):
+    def __init__(self, fps=30, **kwargs):
         super(KivyCamera, self).__init__(**kwargs)
-        self.capture = capture
         self.fps = fps
-        self.test = get_frame("fold1", 200)
+        self.test = utils.get_frame(fold)
         
     
     def start(self):
@@ -102,16 +106,9 @@ class KivyCamera(Image):
 
 class CamApp(MDApp):
     def build(self):
-        self.capture = None
         return Builder.load_string(kv)
-    
-    def button(self):
-        test = get_frame("fold1", 200)
-        ret, frame = next(test)
-        print(frame)
-    
-    def on_stop(self):
-        self.capture.release()
+
+
 
 if __name__ == "__main__":
     CamApp().run()

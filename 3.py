@@ -1,3 +1,7 @@
+#adding multiple textures into the app
+#The video source for each texture can be different allowing multiple display 
+#objects on the screen
+
 from kivymd.app import MDApp
 from kivy.uix.image import Image
 from kivy.clock import Clock

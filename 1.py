@@ -1,3 +1,6 @@
+#Simple program to show how to integrate webcam into kivy textures
+#You can set the video sourse as any external device by changing the parameters of VideoCapture
+#function.
 from kivymd.app import MDApp
 from kivy.uix.image import Image
 from kivy.clock import Clock

@@ -1,3 +1,6 @@
+#Simple camera app which which can capture pictures from your webcam 
+#and display and store it in the current directory
+
 from kivymd.app import MDApp
 from kivy.lang.builder import Builder
 from kivy.uix.boxlayout import BoxLayout
