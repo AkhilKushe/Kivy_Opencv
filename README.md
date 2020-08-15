@@ -3,7 +3,7 @@
 
 ### Description
 * This is my first github repository so I am uploading this just as a demo.
-* This is a collection of some python files that demonstrates the working of Kivy with OpenCv.
+* It is a collection of some python files that demonstrates the working of Kivy with OpenCv.
 * Common usage would be:
     - Camara app
     - Surveillance monitor
